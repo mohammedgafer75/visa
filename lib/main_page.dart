@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:search_page/search_page.dart';
 import 'package:visa/booking_page.dart';
+import 'package:visa/controller/auth_controller.dart';
 import 'package:visa/controller/home_controller.dart';
 import 'package:visa/home_page.dart';
 import 'package:visa/hotel_details_page.dart';
@@ -42,42 +43,49 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
+    AuthController controller = Get.find();
     return Scaffold(
       appBar: AppBar(
         actions: [
           GetBuilder<HomeController>(builder: (controller) {
             return IconButton(
-                onPressed: () => showSearch(
-                      context: context,
-                      delegate: SearchPage<Rooms>(
-                        searchStyle: const TextStyle(
-                            color: Colors.green, backgroundColor: Colors.black),
-                        items: controller.rooms,
-                        searchLabel: 'Search rooms',
-                        suggestion: const Center(
-                          child: Text('Filter rooms by number, price '),
-                        ),
-                        failure: const Center(
-                          child: Text('No rooms found :('),
-                        ),
-                        filter: (person) => [
-                          person.number.toString(),
-                          person.price.toString(),
-                        ],
-                        builder: (person) => ListTile(
-                          onTap: () {
-                            Get.to(() => HotelDetailsPage(
-                                  image: person.image.toString(),
-                                  data: person,
-                                ));
-                          },
-                          title: Text('number: ' + person.number.toString()),
-                          subtitle: Text('price:  ' + person.price!.toString()),
-                        ),
-                      ),
-                    ),
-                icon: Icon(Icons.search));
-          })
+              onPressed: () => showSearch(
+                context: context,
+                delegate: SearchPage<Rooms>(
+                  searchStyle: const TextStyle(
+                      color: Colors.green, backgroundColor: Colors.black),
+                  items: controller.rooms,
+                  searchLabel: 'Search rooms',
+                  suggestion: const Center(
+                    child: Text('Filter rooms by number, price '),
+                  ),
+                  failure: const Center(
+                    child: Text('No rooms found :('),
+                  ),
+                  filter: (person) => [
+                    person.number.toString(),
+                    person.price.toString(),
+                  ],
+                  builder: (person) => ListTile(
+                    onTap: () {
+                      Get.to(() => HotelDetailsPage(
+                            image: person.image.toString(),
+                            data: person,
+                          ));
+                    },
+                    title: Text('number: ' + person.number.toString()),
+                    subtitle: Text('price:  ' + person.price!.toString()),
+                  ),
+                ),
+              ),
+              icon: Icon(Icons.search),
+            );
+          }),
+          IconButton(
+              onPressed: () {
+                controller.signOut();
+              },
+              icon: const Icon(Icons.logout))
         ],
       ),
       body: SafeArea(
