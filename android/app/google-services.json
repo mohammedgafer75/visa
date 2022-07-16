@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "690360267959",
+    "project_id": "hotels-26696",
+    "storage_bucket": "hotels-26696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690360267959:android:829a64bcdef45cef1cc932",
+        "android_client_info": {
+          "package_name": "com.example.visa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690360267959-oi9cmtm0cfbqtouo8h5dedg4k2gkfn65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4jyTJCn-F43Ep5OF9XUucBComI2W-kAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690360267959-oi9cmtm0cfbqtouo8h5dedg4k2gkfn65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
